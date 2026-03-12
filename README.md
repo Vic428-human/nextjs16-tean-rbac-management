@@ -1,6 +1,6 @@
 
 ## 本專案對應面試考題複習
-進度 1040
+進度 0738
 #### 🆚 interface vs type 功能差異比較
 
 下表總結了 TypeScript 中 `interface` 與 `type` 的主要功能差異與支援情況：
