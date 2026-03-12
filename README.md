@@ -33,8 +33,9 @@ interface User {
 ```
 
 ## 本專案預期架構
-> 原先後端的部分，想透過 prisma，但考量到 prisma 的 ORM 生態跟我原本已經寫好的交易所 gorm 生態不同，會有髒資料跟阻塞主業務等風險。
-> 所以本專案不考慮使用 prisma，但前端還是想用 Nextjs 製作。
+> 原先後台的後端部分，想透過 prisma 去規劃 schema，但考量到 prisma 的 ORM 生態，prisma 生態主要對接 typescript，
+> 雖然也有 prisma go，但後續還有migration等問題，這會導致資料可能不好對齊，將來出 bug 時，不好判斷是 prisma 問題還是 go 那邊的問題。
+> 所以，原本決定 繼續使用已經寫好的交易所 gorm 生態，避免髒資料跟阻塞主業務等風險，但前端一樣使用 nextjs 16。
 
 - 後台前端： 使用 Next.js (React) 建構介面。
 - 後台後端： 不建立獨立的 Next.js API。後台前端直接呼叫 現有的 Golang Gin API。
