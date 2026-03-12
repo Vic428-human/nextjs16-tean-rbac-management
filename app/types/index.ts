@@ -19,6 +19,9 @@ export interface User {
 export interface Team {
     id: string;
     name: string;
+    desciption?: string | null;
+    code: string;
+    members: User[];
     createdAt: Date;
     updatedAt: Date;
 }

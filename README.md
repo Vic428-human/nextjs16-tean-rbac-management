@@ -1,6 +1,6 @@
 
 ## 本專案對應面試考題複習
-
+進度 1040
 #### 🆚 interface vs type 功能差異比較
 
 下表總結了 TypeScript 中 `interface` 與 `type` 的主要功能差異與支援情況：
@@ -32,15 +32,13 @@ interface User {
 // 合併後：{ id: number; name: string }
 ```
 
+## 本專案預期架構
+> 原先後端的部分，想透過 prisma，但考量到 prisma 的 ORM 生態跟我原本已經寫好的交易所 gorm 生態不同，會有髒資料跟阻塞主業務等風險。
+> 所以本專案不考慮使用 prisma，但前端還是想用 Nextjs 製作。
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 後台前端： 使用 Next.js (React) 建構介面。
+- 後台後端： 不建立獨立的 Next.js API。後台前端直接呼叫 現有的 Golang Gin API。
+- 資料庫： 只有 Golang 能連接 Postgres。
 
 ## Deploy on Vercel
 
