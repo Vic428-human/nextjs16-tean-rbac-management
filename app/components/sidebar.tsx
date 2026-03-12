@@ -11,8 +11,8 @@ export default function Sidebar({
             href: "/dashboard",
         },
         {
-            name: "Inventory",
-            href: "/inventory",
+            name: "users",
+            href: "/users",
         },
         {
             name: "Add Product",
