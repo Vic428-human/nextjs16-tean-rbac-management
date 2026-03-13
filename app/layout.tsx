@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { QueryProvider } from "./providers/query-provider";
 
 export const metadata: Metadata = {
   title: "Team Access Control",
@@ -15,7 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body
       >
-        {children}
+        <QueryProvider>
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );

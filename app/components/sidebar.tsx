@@ -38,6 +38,17 @@ export default function Sidebar({
                 </div>
                 {navigation.map((item, key) => {
                     const isActive = item.href === currentPage;
+                    // 同一個路由底下就不要重複點選
+                    if (isActive) {
+                        return (
+                            <div
+                                key={key}
+                                className="flex items-center space-x-3 px-3 py-2 rounded-lg bg-purple-100 text-gray-800 cursor-default"
+                            >
+                                <span className="text-sm">{item.name}</span>
+                            </div>
+                        );
+                    }
                     return (
                         <Link
                             href={item.href}
