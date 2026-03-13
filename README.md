@@ -1,6 +1,6 @@
 
 ## 本專案對應面試考題複習
-進度 5311
+進度 021126
 https://www.youtube.com/watch?v=L5CsIkO5xv4&t=3188s
 #### 🆚 interface vs type 功能差異比較
 
