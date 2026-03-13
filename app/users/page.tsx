@@ -1,5 +1,8 @@
 import Sidebar from "../components/sidebar";
+import UsersClient from "./users-client";
 
+// server區: http://localhost:3001/users?q=abc&page=3
+// 點菜單的時候，UsersPage會重跑，所以畫面會re render，導致API會重新呼叫
 export default async function UsersPage({
     searchParams,
 }: {
@@ -10,7 +13,7 @@ export default async function UsersPage({
     const q = (params.q ?? "").trim(); // 拿關鍵字
     const page = Math.max(1, Number(params.page ?? 1)); // 拿當前第幾頁
     const pageSize = 5; // 每頁幾筆
-    console.log("params", params, q, page, pageSize);
+
     return <div className="min-h-screen bg-gray-50">
         <Sidebar currentPage="/users" />
         <main className="ml-64 p-8 ">
@@ -26,7 +29,8 @@ export default async function UsersPage({
             </div>
             {/* product table */}
             <div className="bg-white rounded-lg shadow">
-                123
+                {/* 把 server 取得的 params 傳給 Client Component */}
+                <UsersClient q={q} page={page} pageSize={pageSize} />
             </div>
         </main>
     </div>;
