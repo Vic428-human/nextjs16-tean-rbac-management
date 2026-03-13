@@ -27,11 +27,22 @@ export default async function UsersPage({
 
                 </div>
             </div>
-            {/* product table */}
-            <div className="bg-white rounded-lg shadow">
-                {/* 把 server 取得的 params 傳給 Client Component */}
-                <UsersClient q={q} page={page} pageSize={pageSize} />
+            <div className="space-y-6">
+                {/* search */}
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <form className="flex gap-2" action="/users" method="GET">
+                        <input name="q" placeholder="請輸入" type="text" className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:border-transparent"/>
+                        <button type="button" className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">搜尋</button>
+                    </form>
+                </div>
+                {/* product table */}
+                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    {/* 把 server 取得的 params 傳給 Client Component */}
+                    <UsersClient q={q} page={page} pageSize={pageSize} />
+                </div>
+
             </div>
+
         </main>
     </div>;
 }
