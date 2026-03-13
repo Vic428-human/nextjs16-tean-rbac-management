@@ -11,7 +11,11 @@ export default function UsersClient({
   page: number;
   pageSize: number;
 }) {
-  const { data: getUserData, isLoading, error } = useQuery({
+  const {
+    data: getUserData,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["todos", page, pageSize, q],
     queryFn: async () => {
       const response = await fetch(
@@ -23,7 +27,7 @@ export default function UsersClient({
             Accept: "application/json",
           },
           signal: AbortSignal.timeout(10000),
-        }
+        },
       );
 
       if (!response.ok) {
@@ -39,34 +43,47 @@ export default function UsersClient({
     refetchOnReconnect: false,
     refetchOnMount: false,
   });
-  console.log('getUserData', getUserData);
   if (isLoading) return <div>載入中...</div>;
-  if (error) return <div className="text-red-500">錯誤：{(error as Error).message}</div>;
+  if (error)
+    return <div className="text-red-500">錯誤：{(error as Error).message}</div>;
+
+  const totalPages = Math.max(1, Math.ceil(getUserData.totalCount / pageSize));
+
 
   return (
-    <table className="w-full">
-      <thead className="bg-gray-50">
-        <tr>
-          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">title</th>
-          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">操作</th>
-        </tr>
-      </thead>
-      <tbody className="bg-white divide-y divide-gray-200">
-        {getUserData?.items?.map((todo, key) => (
-          <tr key={key} className="hover:bg-gray-50">
-            <td className="px-6 py-4 text-sm text-gray-500">
-              {todo.title}
-            </td>
-            <td className="px-6 py-4 text-sm text-gray-500">
-              <button type="button" className="text-red-600 hover:text-red-900">
-                編輯
-              </button>
-            </td>
+    <>
+
+      <table className="w-full">
+        <thead className="bg-gray-50">
+          <tr>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+              title
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+              操作
+            </th>
           </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {getUserData?.items?.map((todo, key) => (
+            <tr key={key} className="hover:bg-gray-50">
+              <td className="px-6 py-4 text-sm text-gray-500">{todo.title}</td>
+              <td className="px-6 py-4 text-sm text-gray-500">
+                <button
+                  type="button"
+                  className="text-red-600 hover:text-red-900"
+                >
+                  編輯
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-        ))}
-
-      </tbody>
-    </table>
+      {totalPages > 1 && (
+        <div className="bg-white rounded-lg border border-gray-200 p-6">pagination</div>
+      )}
+    </>
   );
 }
