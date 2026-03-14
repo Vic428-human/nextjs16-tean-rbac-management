@@ -33,9 +33,7 @@ export default function Sidebar({
                 </div>
             </div>
             <nav className="space-y-1">
-                <div className="text-sm font-semibold text-gray-400 uppercase">
-                    Inventory
-                </div>
+
                 {navigation.map((item, key) => {
                     const isActive = item.href === currentPage;
                     // 同一個路由底下就不要重複點選
