@@ -12,7 +12,7 @@ export default async function UsersPage({
     const params = await searchParams;
     const q = (params.q ?? "").trim(); // 拿關鍵字
     const page = Math.max(1, Number(params.page ?? 1)); // 拿當前第幾頁
-    const pageSize = 5; // 每頁幾筆
+    const pageSize = 1; // 每頁幾筆
 
 
 
