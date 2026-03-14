@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import Pagination from "../components/pagination";
 
 export default function UsersClient({
   q,
@@ -82,7 +83,14 @@ export default function UsersClient({
       </table>
 
       {totalPages > 1 && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">pagination</div>
+        <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            baseUrl="/users"
+            searchParams={{ q, pageSize: String(pageSize) }}
+          />
+        </div>
       )}
     </>
   );
