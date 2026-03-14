@@ -20,7 +20,7 @@ export default function UsersClient({
     queryKey: ["todos", page, pageSize, q],
     queryFn: async () => {
       const response = await fetch(
-        `http://localhost:8080/todos?page=${page}&pageSize=${pageSize}`,
+        `http://localhost:3000/users?page=${page}&pageSize=${pageSize}`,
         {
           method: "GET",
           credentials: "include",
@@ -60,6 +60,9 @@ export default function UsersClient({
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
               title
             </th>
+             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+              Id
+            </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
               操作
             </th>
@@ -68,7 +71,8 @@ export default function UsersClient({
         <tbody className="bg-white divide-y divide-gray-200">
           {getUserData?.items?.map((todo, key) => (
             <tr key={key} className="hover:bg-gray-50">
-              <td className="px-6 py-4 text-sm text-gray-500">{todo.title}</td>
+              <td className="px-6 py-4 text-sm text-gray-500">{todo.email}</td>
+               <td className="px-6 py-4 text-sm text-gray-500">{todo.id}</td>
               <td className="px-6 py-4 text-sm text-gray-500">
                 <button
                   type="button"
